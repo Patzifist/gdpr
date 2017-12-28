@@ -1,11 +1,8 @@
-entity Account {
+entity GDPRAccount {
 	personalInfo PersonalInfo,
     billingInfo BillingInfo,
     serviceInfo ServiceInfo
 }
-
-paginate Account with pagination
-service Account with serviceClass
 
 entity PersonalInfo {
 	businessInfo BusinessInfo,
@@ -66,9 +63,9 @@ entity Service {
 }
 
 relationship OneToOne {
-    Account{personalInfo} to PersonalInfo,
-    Account{billingInfo} to BillingInfo,
-    Account{serviceInfo} to ServiceInfo,
+    GDPRAccount{personalInfo} to PersonalInfo,
+    GDPRAccount{billingInfo} to BillingInfo,
+    GDPRAccount{serviceInfo} to ServiceInfo,
     PersonalInfo{businessInfo} to BusinessInfo,
     PersonalInfo{technicalInfo} to TechnicalInfo,
     PersonalInfo{securityInfo} to SecurityInfo,
@@ -84,4 +81,6 @@ relationship OneToMany {
  ServiceInfo{services} to Service
 }
 
+paginate GDPRAccount with pagination
+service GDPRAccount with serviceClass
 dto * with mapstruct
