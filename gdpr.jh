@@ -1,38 +1,56 @@
 entity GDPRAccount (gdpr_account) {
-	personalInfo PersonalInfo,
-    billingInfo BillingInfo,
-    serviceInfo ServiceInfo
 }
 
 entity PersonalInfo (personal_info) {
-	businessInfo BusinessInfo,
-    technicalInfo TechnicalInfo,
-    securityInfo SecurityInfo
 }
 
 entity BillingInfo (billing_info) {
-	businessInfo BusinessInfo,
-    financialInfo FinancialInfo,
-    marketingInfo MarketingInfo,
-    employeeInfo EmployeeInfo,
-    technicalInfo TechnicalInfo,
-    securityInfo SecurityInfo
 }
 
 entity ServiceInfo (service_info) {
-	services Service
 }
 
 entity BusinessInfo (business_info) {
  	taxId String,
     bankAccountInfo String,
     paymentCardInfo String,
-    billingContact Contact,
-    techContact Contact,
-    adminContact Contact,
-    personalContact Contact,
     companyName String,
     orderDetails String
+}
+
+entity Contact (contact) {
+	email String,
+    notificationEmail String,
+    givenName String,
+    additionalName String,
+    familyName String,
+    fullName String,
+    displayName String,
+    organizationName String,
+    organizationUnit String,
+    title String,
+    addressPostal Address,
+    telVoice String,
+    telHome String,
+    telWork String,
+    telCell String,
+    telFax String,
+    telPager String,
+    tz String,
+    note String,
+    url String,
+    locale String,
+    avatarUrl String
+}
+
+entity Address (address) {
+	postOfficeBox String,
+    extendedAddress String,
+    streetAddress String,
+    locality String,
+    region String,
+    postalCode String,
+    countryName String
 }
 
 entity FinancialInfo (financial_info) {
@@ -66,6 +84,7 @@ relationship OneToOne {
     GDPRAccount{personalInfo} to PersonalInfo,
     GDPRAccount{billingInfo} to BillingInfo,
     GDPRAccount{serviceInfo} to ServiceInfo,
+    GDPRAccount{serviceInfo} to Con,
     PersonalInfo{businessInfo} to BusinessInfo,
     PersonalInfo{technicalInfo} to TechnicalInfo,
     PersonalInfo{securityInfo} to SecurityInfo,
@@ -78,7 +97,15 @@ relationship OneToOne {
 }
 
 relationship OneToMany {
- ServiceInfo{services} to Service
+ ServiceInfo{services} to Service,
+ Contact{properties} to Address
+}
+
+relationship ManyToOne {
+	Contact{billingContact} to GDPRAccount ,
+    Contact{techContact} to GDPRAccount ,
+    Contact{adminContact} to GDPRAccount ,
+    Contact{personalContact} to GDPRAccount 
 }
 
 paginate GDPRAccount with pagination
