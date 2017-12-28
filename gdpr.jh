@@ -1,0 +1,87 @@
+entity Account {
+	personalInfo PersonalInfo,
+    billingInfo BillingInfo,
+    serviceInfo ServiceInfo
+}
+
+paginate Account with pagination
+service Account with serviceClass
+
+entity PersonalInfo {
+	businessInfo BusinessInfo,
+    technicalInfo TechnicalInfo,
+    securityInfo SecurityInfo
+}
+
+entity BillingInfo {
+	businessInfo BusinessInfo,
+    financialInfo FinancialInfo,
+    marketingInfo MarketingInfo,
+    employeeInfo EmployeeInfo,
+    technicalInfo TechnicalInfo,
+    securityInfo SecurityInfo
+}
+
+entity ServiceInfo {
+	services Service
+}
+
+entity BusinessInfo {
+ 	taxId String,
+    bankAccountInfo String,
+    paymentCardInfo String,
+    billingContact Contact,
+    techContact Contact,
+    adminContact Contact,
+    personalContact Contact,
+    companyName String,
+    orderDetails String
+}
+
+entity FinancialInfo {
+	financialData String
+}
+
+entity MarketingInfo {
+	marketingData String
+}
+
+entity EmployeeInfo {
+	passportNumber String,
+    bankAccountNumber String
+}
+
+entity TechnicalInfo {
+	username String,
+    password String,
+    email String
+}
+
+entity SecurityInfo {
+	avatar String
+}
+
+entity Service {
+	serviceData String
+}
+
+relationship OneToOne {
+    Account{personalInfo} to PersonalInfo,
+    Account{billingInfo} to BillingInfo,
+    Account{serviceInfo} to ServiceInfo,
+    PersonalInfo{businessInfo} to BusinessInfo,
+    PersonalInfo{technicalInfo} to TechnicalInfo,
+    PersonalInfo{securityInfo} to SecurityInfo,
+	BillingInfo{businessInfo} to BusinessInfo,
+	BillingInfo{financialInfo} to FinancialInfo,
+	BillingInfo{marketingInfo} to MarketingInfo,
+    BillingInfo{employeeInfo} to EmployeeInfo,
+    BillingInfo{technicalInfo} to TechnicalInfo,
+    BillingInfo{securityInfo} to SecurityInfo
+}
+
+relationship OneToMany {
+ ServiceInfo{services} to Service
+}
+
+dto * with mapstruct
