@@ -1,16 +1,16 @@
-entity GDPRAccount {
+entity GDPRAccount (gdpr_account) {
 	personalInfo PersonalInfo,
     billingInfo BillingInfo,
     serviceInfo ServiceInfo
 }
 
-entity PersonalInfo {
+entity PersonalInfo (personal_info) {
 	businessInfo BusinessInfo,
     technicalInfo TechnicalInfo,
     securityInfo SecurityInfo
 }
 
-entity BillingInfo {
+entity BillingInfo (billing_info) {
 	businessInfo BusinessInfo,
     financialInfo FinancialInfo,
     marketingInfo MarketingInfo,
@@ -19,11 +19,11 @@ entity BillingInfo {
     securityInfo SecurityInfo
 }
 
-entity ServiceInfo {
+entity ServiceInfo (service_info) {
 	services Service
 }
 
-entity BusinessInfo {
+entity BusinessInfo (business_info) {
  	taxId String,
     bankAccountInfo String,
     paymentCardInfo String,
@@ -35,30 +35,30 @@ entity BusinessInfo {
     orderDetails String
 }
 
-entity FinancialInfo {
+entity FinancialInfo (financial_info) {
 	financialData String
 }
 
-entity MarketingInfo {
+entity MarketingInfo (marketing_info) {
 	marketingData String
 }
 
-entity EmployeeInfo {
+entity EmployeeInfo (employee_info) {
 	passportNumber String,
     bankAccountNumber String
 }
 
-entity TechnicalInfo {
+entity TechnicalInfo (technical_info) {
 	username String,
     password String,
     email String
 }
 
-entity SecurityInfo {
+entity SecurityInfo (security_info) {
 	avatar String
 }
 
-entity Service {
+entity Service (service) {
 	serviceData String
 }
 
